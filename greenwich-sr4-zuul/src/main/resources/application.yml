@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: zuul-service
+
+server:
+  port: 8080  # 端口号默认8080
+# 服务注册 
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://huaxia:huaxia@localhost:8761/eureka/
+  
+zuul:
+  prefix: /api  #zuul.prefix 配置项可以为所有的路由地址都添加一个前缀
+  routes:
+    order-service: /order-service/**
+    stock-service: /stock-service/**

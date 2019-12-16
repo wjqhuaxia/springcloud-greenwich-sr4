@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: integral-service
+
+server:
+  port: 9003  # 端口号默认8080
+  servlet:
+    context-path: /integral # 项目路径默认/
+# 服务注册 
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+  
+ 

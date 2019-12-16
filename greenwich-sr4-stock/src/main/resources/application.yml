@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: stock-service
+
+server:
+  port: 9002  # 端口号默认8080
+  servlet:
+    context-path: /stock # 项目路径默认/
+# 服务注册 
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+  
+ 
