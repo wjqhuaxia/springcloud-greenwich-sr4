@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: config-center
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/wjqhuaxia/config.git
+          username: xx
+          password: xx
+
+server:
+  port: 8000  # 端口号默认8080
+# 服务注册 
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://huaxia:huaxia@localhost:8761/eureka/
+      

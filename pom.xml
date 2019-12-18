@@ -38,6 +38,16 @@
 		<groupId>org.springframework.cloud</groupId>
 		<artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
 	</dependency>
+	<!-- Sleuth+Zipkin 依赖 -->
+	<!-- <dependency>
+		<groupId>org.springframework.cloud</groupId>
+		<artifactId>spring-cloud-starter-zipkin</artifactId>
+	</dependency> -->
+	<!-- config client -->
+	<dependency>
+		<groupId>org.springframework.cloud</groupId>
+		<artifactId>spring-cloud-config-client</artifactId>
+	</dependency>
   </dependencies>
    
     <repositories>
@@ -57,5 +67,6 @@
     	<module>greenwich-sr4-common</module>
     	<module>greenwich-sr4-stock</module>
     	<module>greenwich-sr4-integral</module>
+    	<module>greenwich-sr4-config</module>
     </modules>
 </project>

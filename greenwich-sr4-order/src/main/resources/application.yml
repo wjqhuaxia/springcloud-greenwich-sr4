@@ -1,19 +1,4 @@
 spring:
   application:
-    name: order-service
-
-server:
-  port: 9001  # 端口号默认8080
-  servlet:
-    context-path: /order # 项目路径默认/
-# 服务注册 
-eureka:
-  client:
-    serviceUrl:
-      defaultZone: http://huaxia:huaxia@localhost:8761/eureka/
-      
-feign:
-  hystrix:
-    enabled: true
-  
+    name: order-service    
  
