@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: user-auth-service
+  #cloud:
+  #  config:
+   #   discovery:
+    #    enabled: true
+    #    service-id: config-center  # 指定用于获取配置的配置中心服务(应用)名称
+    #  profile: dev
+     # label: master
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://huaxia:huaxia@localhost:8761/eureka/

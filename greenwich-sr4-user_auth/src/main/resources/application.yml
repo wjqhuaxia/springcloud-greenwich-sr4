@@ -1,0 +1,42 @@
+spring:
+  application:
+    name: user-auth-service
+  datasource:
+    username: root
+    password: wjq
+    url: jdbc:mysql://localhost:3306/mytest?serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8
+    driver-class-name: com.mysql.jdbc.Driver
+
+    type: com.alibaba.druid.pool.DruidDataSource #使用druid数据源
+    druid:
+      initial-size: 5   #初始化的时候会创建一定数量的连接到连接池中
+      min-idle: 5       #最小连接数 无论这些连接是否被使用都保留着这些数量的连接
+      max-active: 20    #连接池中最大的连接数，如果超过最大值，后面的连接将等待加入(使用公平锁排队进入)
+      max-wait: 60000   #配置获取连接等待超时的时间
+      time-between-connect-error-millis: 300000  #配置一个连接在池中最小生存的时间，单位是毫秒
+      time-between-eviction-runs-millis: 60000   #配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
+      validation-query: SELECT 1 FROM DUAL       #连接测试  注意 MySQL orale 中有 dual表 sqlserver数据库没有
+      test-while-idle: true                      #申请连接的时候检测，建议配置为true，不影响性能，并且保证安全性
+      test-on-borrow: false                      #获取连接时执行检测，建议关闭，影响性能
+      test-on-return: false                      #归还连接时执行检测，建议关闭，影响性能
+      pool-prepared-statements: true             #是否开启PSCache，PSCache对支持游标的数据库性能提升巨大，oracle建议开启，mysql下建议关闭
+      #定每个连接上PSCache的大小 开启poolPreparedStatements后生效
+      max-pool-prepared-statement-per-connection-size: 20
+      #connect-properties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+      useGlobalDataSourceStat: true
+      filters: stat,logback,wall                   #扩展插件 配置监控统计拦截的filters 常用的插件有=>stat:监控统计  log4j:日志  wall:防御sql注入
+
+    
+server:
+  port: 9005  # 端口号默认8080
+  servlet:
+    context-path: /user/auth # 项目路径默认/
+      
+feign:
+  hystrix:
+    enabled: true
+    
+mybatis:
+  type-aliases-package: cn.com.wjqhuaxia.model
+  mapper-locations:
+  - classpath:mapper/cn/com/wjqhuaxia/*.xml 
