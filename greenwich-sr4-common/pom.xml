@@ -6,4 +6,19 @@
     <version>0.0.1-SNAPSHOT</version>
   </parent>
   <artifactId>greenwich-sr4-common</artifactId>
+  
+  <dependencies>
+  	<!-- 分页插件 -->
+	<!-- <dependency>
+		<groupId>com.github.pagehelper</groupId>
+		<artifactId>pagehelper-spring-boot-starter</artifactId>
+		<version>1.2.10</version>
+	</dependency> -->
+	<!-- https://mvnrepository.com/artifact/com.alibaba/fastjson -->  
+	<dependency>  
+	    <groupId>com.alibaba</groupId>  
+	    <artifactId>fastjson</artifactId>  
+	    <version>1.2.41</version>  
+	</dependency> 
+  </dependencies>
 </project>

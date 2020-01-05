@@ -32,5 +32,17 @@
 		<groupId>org.springframework.cloud</groupId>
 		<artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
 	</dependency>
+	<!-- 项目common包 -->
+     <dependency>
+		<groupId>cn.com.wjqhuaxia</groupId>
+	    <artifactId>greenwich-sr4-common</artifactId>
+	    <version>0.0.1-SNAPSHOT</version>
+	</dependency>
+	<!-- 添加devtools热部署包 -->
+	<dependency>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-devtools</artifactId>
+		<optional>true</optional>
+	</dependency>
   </dependencies>
 </project>

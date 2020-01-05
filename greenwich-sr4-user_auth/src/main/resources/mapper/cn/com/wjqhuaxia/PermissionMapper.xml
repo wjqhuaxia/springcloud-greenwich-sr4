@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.com.wjqhuaxia.dao.PermissionMapper" >
+  <resultMap id="BaseResultMap" type="cn.com.wjqhuaxia.mode.dto.Permission" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="permissionname" property="permissionname" jdbcType="VARCHAR" />
+    <result column="url" property="url" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, permissionname, url
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from sys_permission
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from sys_permission
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.com.wjqhuaxia.mode.dto.Permission" >
+    insert into sys_permission (id, permissionname, url
+      )
+    values (#{id,jdbcType=INTEGER}, #{permissionname,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cn.com.wjqhuaxia.mode.dto.Permission" >
+    insert into sys_permission
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="permissionname != null" >
+        permissionname,
+      </if>
+      <if test="url != null" >
+        url,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="permissionname != null" >
+        #{permissionname,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null" >
+        #{url,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.com.wjqhuaxia.mode.dto.Permission" >
+    update sys_permission
+    <set >
+      <if test="permissionname != null" >
+        permissionname = #{permissionname,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null" >
+        url = #{url,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.com.wjqhuaxia.mode.dto.Permission" >
+    update sys_permission
+    set permissionname = #{permissionname,jdbcType=VARCHAR},
+      url = #{url,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <select id="findByUserId" parameterType="int" resultType="cn.com.wjqhuaxia.mode.dto.Permission">
+      select DISTINCT p.*
+        from sys_user u
+        LEFT JOIN sys_user_role sur on u.id= sur.user_id
+        LEFT JOIN sys_role r on sur.role_id=r.id
+        LEFT JOIN sys_role_permission srp on srp.role_id=r.id
+        LEFT JOIN sys_permission p on p.id =srp.permission_id
+        where u.id=#{userId}
+ </select>
+	<select id="findAll"  resultType="cn.com.wjqhuaxia.mode.dto.Permission">
+	   SELECT * from Sys_permission
+	</select>
+</mapper>
