@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-import cn.com.wjqhuaxia.mode.CommonResult;
+import cn.com.wjqhuaxia.mode.ResultBean;
 /**
  * 统一的异常处理
  * @author wjqhuaxia
@@ -27,26 +27,26 @@ public class GlobalExceptionHandler {
 	@ExceptionHandler(Exception.class)
     public Object runtimeExceptionHandler(Exception e) {
         log.error("请求出现异常,异常信息为: {}", e.getMessage());
-        return CommonResult.validateFailed(e.getMessage());
+        return ResultBean.validateFailed(e.getMessage());
     }
  
     @SuppressWarnings("rawtypes")
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public CommonResult handleBindException(MethodArgumentNotValidException ex) {
+    public ResultBean handleBindException(MethodArgumentNotValidException ex) {
         FieldError fieldError = ex.getBindingResult().getFieldError();
         // 封装错误信息格式为：defaultMessage(field)
         String msg = String.format("%s(%s)", fieldError.getDefaultMessage(), fieldError.getField());
         log.info("参数校验异常:{}({})", fieldError.getDefaultMessage(),fieldError.getField());
-        return CommonResult.validateFailed(msg);
+        return ResultBean.validateFailed(msg);
     }
  
     @SuppressWarnings("rawtypes")
 	@ExceptionHandler(BindException.class)
-    public CommonResult handleBindException(BindException ex) {
+    public ResultBean handleBindException(BindException ex) {
         FieldError fieldError = ex.getBindingResult().getFieldError();
         // 封装错误信息格式为：defaultMessage(field)
         String msg = String.format("%s(%s)", fieldError.getDefaultMessage(), fieldError.getField());
         log.info("参数校验异常:{}({})", fieldError.getDefaultMessage(),fieldError.getField());
-        return CommonResult.validateFailed(msg);
+        return ResultBean.validateFailed(msg);
     }
 }
