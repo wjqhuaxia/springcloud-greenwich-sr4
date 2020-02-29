@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import cn.com.wjqhuaxia.dao.IUserDao;
 import cn.com.wjqhuaxia.dao.UserMapper;
-import cn.com.wjqhuaxia.mode.CommonResult;
+import cn.com.wjqhuaxia.mode.ResultBean;
 import cn.com.wjqhuaxia.mode.dto.User;
 import cn.com.wjqhuaxia.model.UserEntity;
 import cn.com.wjqhuaxia.util.ThreadSessionUtil;
@@ -63,10 +63,10 @@ public class UserManageController {
 	
 	@ApiOperation(value = "获取当前登陆用户信息" ,  notes="获取当前登陆用户信息")
 	@RequestMapping(value = "/getCurrentUser", method = RequestMethod.GET)
-    public CommonResult<User> getCurrentUser() {
+    public ResultBean<User> getCurrentUser() {
 		User user = ThreadSessionUtil.get();
 		logger.info("getCurrentUser user: {}", user);
-        return CommonResult.success(user);
+        return ResultBean.success(user);
     }
     
 	@ApiOperation(value = "新增用户" ,  notes="新增用户")
